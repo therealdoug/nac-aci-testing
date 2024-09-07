@@ -1,0 +1,175 @@
+---
+apic:
+  tenants:
+    - name: ProductDomain1-Acc
+      description: ProductDomain|TicketNumber
+      contracts:
+        - name: Con1
+        - name: Con2
+        - name: Con3
+        - name: Con4
+        - name: Con5
+      imported_contracts:
+        - name: CtImp-TRD-ProductDomain1-Acc
+          tenant: trd_network-as-code_testing
+          contract: Contract1-Exported
+
+      vrfs:
+        - name: acc
+      
+      bridge_domains:
+        - name: productdomain1_app1_acc_bd
+          vrf: acc
+        - name: productdomain1_app2_acc_bd
+          vrf: acc
+        - name: productdomain1_app3_acc_bd
+          vrf: acc
+        
+      application_profiles:
+        - name: APP1_acc_ap
+          description: APP1 Container|10.74.129.128/27
+          endpoint_groups:
+            - name: APP1_Web_acc_epg
+              description: 10.74.129.129/28
+              bridge_domain: productdomain1_app1_acc_bd
+              contracts:
+                imported_consumers:
+                  - CtImp-TRD-ProductDomain1-Acc
+              subnets:
+                - ip: 10.74.129.129/28
+                  private: true
+                  shared: true
+            - name: APP1_DB_acc_epg
+              description: 10.74.129.145/28
+              bridge_domain: productdomain1_app1_acc_bd
+              subnets:
+                - ip: 10.74.129.145/28
+                  private: true
+                  shared: true
+        - name: APP2_acc_ap
+          description: APP2 Container|10.74.130.128/27
+          endpoint_groups:
+            - name: APP2_Web_acc_epg
+              description: 10.74.130.129/28
+              bridge_domain: productdomain1_app2_acc_bd
+              contracts:
+                imported_consumers:
+                  - CtImp-TRD-ProductDomain1-Acc
+              subnets:
+                - ip: 10.74.130.129/28
+                  private: true
+                  shared: true
+            - name: APP2_DB_acc_epg
+              description: 10.74.130.145/28
+              bridge_domain: productdomain1_app2_acc_bd
+              subnets:
+                - ip: 10.74.130.145/28
+                  private: true
+                  shared: true
+        - name: APP3_acc_ap
+          description: APP3 Container|10.74.131.128/27
+          endpoint_groups:
+            - name: APP3_Web_acc_epg
+              description: 10.74.131.129/28
+              bridge_domain: productdomain1_app3_acc_bd
+              contracts:
+                imported_consumers:
+                  - CtImp-TRD-ProductDomain1-Acc
+              subnets:
+                - ip: 10.74.131.129/28
+                  private: true
+                  shared: true
+            - name: APP3_DB_acc_epg
+              description: 10.74.131.145/28
+              bridge_domain: productdomain1_app3_acc_bd
+              subnets:
+                - ip: 10.74.131.145/28
+                  private: true
+                  shared: true
+
+
+    - name: ProductDomain2-Acc
+      description: ProductDomain|TicketNumber
+
+      vrfs:
+        - name: acc
+      
+      bridge_domains:
+        - name: productdomain2_app1_acc_bd
+          vrf: acc
+        - name: productdomain2_app2_acc_bd
+          vrf: acc
+        - name: productdomain2_app3_acc_bd
+          vrf: acc
+      contracts:
+        - name: Con1
+        - name: Con2
+        - name: Con3
+        - name: Con4
+        - name: Con5
+      imported_contracts:
+        - name: CtImp-TRD-ProductDomain1-Acc
+          tenant: trd_network-as-code_testing
+          contract: Contract1-Exported
+
+      application_profiles:
+        - name: APP1_acc_ap
+          description: APP1 Container|10.75.129.128/27
+          endpoint_groups:
+            - name: APP1_Web_acc_epg
+              description: 10.75.129.129/28
+              bridge_domain: productdomain2_app1_acc_bd
+              contracts:
+                imported_consumers:
+                  - CtImp-TRD-ProductDomain2-Acc
+              subnets:
+                - ip: 10.75.129.129/28
+                  private: true
+                  shared: true
+            - name: APP1_DB_acc_epg
+              description: 10.75.129.145/28
+              bridge_domain: productdomain2_app1_acc_bd
+              subnets:
+                - ip: 10.75.129.145/28
+                  private: true
+                  shared: true
+        - name: APP2_acc_ap
+          description: APP2 Container|10.75.130.128/27
+          endpoint_groups:
+            - name: APP2_Web_acc_epg
+              description: 10.75.130.129/28
+              bridge_domain: productdomain2_app2_acc_bd
+              contracts:
+                imported_consumers:
+                  - CtImp-TRD-ProductDomain2-Acc
+              subnets:
+                - ip: 10.75.130.129/28
+                  private: true
+                  shared: true
+            - name: APP2_DB_acc_epg
+              description: 10.75.130.145/28
+              bridge_domain: productdomain2_app2_acc_bd
+              subnets:
+                - ip: 10.75.130.145/28
+                  private: true
+                  shared: true
+        - name: APP3_acc_ap
+          description: APP3 Container|10.75.131.128/27
+          endpoint_groups:
+            - name: APP3_Web_acc_epg
+              description: 10.75.131.129/28
+              bridge_domain: productdomain2_app3_acc_bd
+              contracts:
+                imported_consumers:
+                  - CtImp-TRD-ProductDomain2-Acc
+              subnets:
+                - ip: 10.75.131.129/28
+                  private: true
+                  shared: true
+            - name: APP3_DB_acc_epg
+              description: 10.75.131.145/28
+              bridge_domain: productdomain2_app3_acc_bd
+              subnets:
+                - ip: 10.75.131.145/28
+                  private: true
+                  shared: true

@@ -1,0 +1,80 @@
+---
+apic:
+  tenants:
+    - name: StuPedazzo_LabelTesting
+      vrfs:
+        - name: default
+      bridge_domains:
+        - name: default
+          vrf: default
+      application_profiles:
+        - name: LabelTesting
+          endpoint_groups:
+            - name: epg
+              bridge_domain: default
+              consumed_subject_labels:
+                - name: consumed_subject_label01
+                  tag: black
+                - name: consumed_subject_label02
+                  tag: aqua
+              provided_subject_labels:
+                - name: provided_subject_label01
+                  tag: yellow
+                - name: provided_subject_label02
+                  tag: bisque
+              consumed_epg_labels:
+                - name: consumed_epg_label01
+                  tag: black
+                - name: consumed_epg_label02
+                  tag: aqua
+              provided_epg_labels:
+                - name: provided_epg_label01
+                  tag: yellow
+                - name: provided_epg_label02
+                  tag: bisque
+          useg_endpoint_groups:
+            - name: useg
+              bridge_domain: default
+              consumed_subject_labels:
+                - name: consumed_subject_label01
+                  tag: black
+                - name: consumed_subject_label02
+                  tag: aqua
+              provided_subject_labels:
+                - name: provided_subject_label01
+                  tag: yellow
+                - name: provided_subject_label02
+                  tag: bisque
+              consumed_epg_labels:
+                - name: consumed_epg_label01
+                  tag: black
+                - name: consumed_epg_label02
+                  tag: aqua
+              provided_epg_labels:
+                - name: provided_epg_label01
+                  tag: yellow
+                - name: provided_epg_label02
+                  tag: bisque
+          endpoint_security_groups:
+            - name: esg
+              vrf: default
+              consumed_subject_labels:
+                - name: consumed_subject_label01
+                  tag: black
+                - name: consumed_subject_label02
+                  tag: aqua
+              provided_subject_labels:
+                - name: provided_subject_label01
+                  tag: yellow
+                - name: provided_subject_label02
+                  tag: bisque
+              consumed_esg_labels:
+                - name: consumed_esg_label01
+                  tag: black
+                - name: consumed_esg_label02
+                  tag: aqua
+              provided_esg_labels:
+                - name: provided_esg_label01
+                  tag: yellow
+                - name: provided_esg_label02
+                  tag: bisque

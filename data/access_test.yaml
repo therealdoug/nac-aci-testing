@@ -1,0 +1,53 @@
+apic:
+  access_policies:
+    leaf_switch_policy_groups:
+      - name: leaf_copp_pg1
+        copp_leaf_policy: leaf_copp_profile_custom
+
+    spine_switch_policy_groups:
+      - name: spine_copp_pg1
+        copp_spine_policy: spine_copp_profile_custom
+
+    spine_copp_policies:
+      - name: spine_copp_profile_blank
+
+      - name: spine_copp_profile_lenient
+        description: spine_copp_profile description
+        type: lenient
+
+      - name: spine_copp_profile_strict
+        description: spine_copp_profile description
+        type: strict
+
+      - name: spine_copp_profile_custom_blank
+        description: Custom type with no customizations - take the defaults
+        type: custom
+        
+      - name: spine_copp_profile_custom
+        description: Custom type with customizations
+        type: custom
+        custom_values:
+          arp_rate: 1234
+          arp_burst: 338
+
+    leaf_copp_policies:
+      - name: leaf_copp_profile_blank
+
+      - name: leaf_copp_profile_lenient
+        description: leaf_copp_profile description
+        type: lenient
+
+      - name: leaf_copp_profile_strict
+        description: leaf_copp_profile description
+        type: strict
+
+      - name: leaf_copp_profile_custom_blank
+        description: Custom type with no customizations - take the defaults
+        type: custom
+        
+      - name: leaf_copp_profile_custom
+        description: Custom type with customizations
+        type: custom
+        custom_values:
+          arp_rate: 1234
+          arp_burst: 338

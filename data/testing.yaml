@@ -1,0 +1,222 @@
+---
+apic:
+  tenants:
+    - name: StuPedazzo
+      vrfs:
+        - name: default
+      bridge_domains:
+        - name: default
+          vrf: default
+      application_profiles:
+        - name: default
+          endpoint_groups:
+            - name: default
+              data_plane_policing_policy: tenant-data-plane-policing-test1
+              bridge_domain: default
+          endpoint_security_groups:
+            - name: esg
+              vrf: default
+      policies:
+        endpoint_mac_tags:
+          - mac: de:ad:b4:de:ca:ff
+            bridge_domain: default
+            annotations:
+              - key: AnnotationKey1
+                value: AnnotationValue1
+              - key: AnnotationKey2
+                value: AnnotationValue2
+              - key: sdioajdsf7afw8y7aowes sdafdsf9#
+                value: "test"
+            tags:
+              - key: Environment
+                value: PRODUCTION
+          - mac: ab:cd:de:ad:be:ef
+            bridge_domain: all
+            vrf: default
+            tags:
+              - key: Environment
+                value: PRODUCTION
+        endpoint_ip_tags:
+          - ip: 1.1.1.1
+            vrf: default
+            tags:
+              - key: Environment
+                value: PRODUCTION
+          - ip: 1.1.1.2
+            vrf: default
+            tags:
+              - key: Environment
+                value: DEVELOPMENT
+
+#         data_plane_policing_policies:
+#           - name: tenant-data-plane-policing-test1
+#             admin_state: true
+#             mode: packet
+#             type: 2R3C
+#             rate: 10000
+#             pir: 50
+#             pir_unit: mega
+#             burst: unspecified
+#             conform_action: mark
+#             conform_mark_cos: 4
+#             conform_mark_dscp: 21
+#             exceed_action: mark
+#             exceed_mark_cos: 5
+#             exceed_mark_dscp: 22
+#             violate_action: mark
+#             violate_mark_cos: 6
+#             violate_mark_dscp: 23
+
+#           - name: tenant-data-plane-policing-test2
+#             rate: 10
+
+#           - name: tenant-data-plane-policing-test3
+#             admin_state: true
+#             rate: 1000
+#             burst: unspecified
+#             conform_action: drop
+#             violate_action: transmit
+#             sharing_mode: dedicated
+
+
+#       l3outs:
+#         - name: data_plane_policing_l3out
+#           domain: data_plane_policing_l3out_domain
+#           vrf: default
+#           node_profiles:
+#             - name: data_plane_policing_l3out_node_profile
+#               interface_profiles:
+#                 - name: data_plane_policing_l3out_interface_profile
+#                   egress_data_plane_policing_policy: tenant-data-plane-policing-test1
+#                   ingress_data_plane_policing_policy: tenant-data-plane-policing-test2
+#               nodes:
+#                 - node_id: 111
+#                   pod_id: 1
+#                   router_id: 1.1.1.1
+#                   router_id_as_loopback: true
+
+#   access_policies:
+#     leaf_interface_policy_groups:
+#       - name: tftestmacsecip
+#         macsec_policy: tftest-macsec-intpol1
+#         type: access
+#         cdp_policy: system-cdp-disabled
+#         copp_policy: copp-interface-policy-test1
+#       - name: tftest-macsec-ip_vpc
+#         type: vpc
+#         macsec_policy: tftest-macsec-intpol2
+#         copp_policy: copp-interface-policy-test1
+#       - name: tftest-macsec-ip_pc
+#         type: pc
+#         macsec_policy: "tftest-macsec-intpol3"
+#       - name: data-plane-test-ipg
+#         macsec_policy: tftest-macsec-intpol1
+#         type: access
+#         cdp_policy: system-cdp-disabled
+#         copp_policy: copp-interface-policy-test2
+#         egress_data_plane_policing_policy: data-plane-policing-test1
+#         ingress_data_plane_policing_policy: data-plane-policing-test2
+#     interface_policies:
+
+#       copp_policies:
+#         - name: copp-interface-policy-test1
+
+#         - name: copp-interface-policy-test4
+#           protocol_policies:
+#             - name: copp-interface-policy-test4-pp-bgp
+
+#         - name: copp-interface-policy-test2
+#           description: copp-interface-policy-test2 description
+#           protocol_policies:
+#             - name: copp-interface-policy-test2-pp
+#               match_protocols:
+#                 - lacp
+#               # rate: 6667
+#               # burst: 100
+#             - name: copp-interface-policy-test2-pp-bgp
+#               match_protocols:
+#                 - bgp
+#                 - ospf
+#               rate: 12345
+#               burst: 100
+#             - name: copp-interface-policy-test3-pp-bgp
+#               match_protocols:
+#                 - arp
+#                 - cdp
+#                 - lldp
+#               rate: 1234
+#               burst: 1000
+#       data_plane_policing_policies:
+#         - name: data-plane-policing-test1
+#           admin_state: true
+#           rate: 1000
+#           burst: unspecified
+#           conform_action: drop
+#           violate_action: transmit
+#           sharing_mode: dedicated
+#         - name: data-plane-policing-test2
+#           admin_state: true
+#           type: 2R3C
+#           rate: 1000
+#           pir: 50
+#           pir_unit: mega
+#           burst: unspecified
+#           conform_action: drop
+#           exceed_action: mark
+#           exceed_mark_cos: 5
+#           exceed_mark_dscp: 6
+#           violate_action: transmit
+#           sharing_mode: dedicated
+#         - name: data-plane-policing-test3
+        
+#       macsec_interfaces_policies:
+#         - name: tftest-macsec-intpol1
+#           admin_state: true
+#           macsec_parameters_policy: tftest-macsec-param-test2
+#           macsec_keychain_policy: tftest-macsec-kc-test2
+#         - name: tftest-macsec-intpol2
+#           admin_state: true
+#           macsec_parameters_policy: tftest-macsec-param-test1
+#           macsec_keychain_policy: tftest-macsec-kc-test2
+#         - name: tftest-macsec-intpol3
+#           admin_state: true
+#           macsec_parameters_policy: tftest-macsec-param-test2
+#           macsec_keychain_policy: tftest-macsec-kc-test2
+#       macsec_parameters_policies:
+#         - name: "tftest-macsec-param-test"
+#           description: this is a thing
+#           key_expiry_time: 0
+#         - name: "tftest-macsec-param-test1"
+#           key_server_priority: 32
+#           window_size: 128
+#           security_policy: must-secure
+#           key_expiry_time: 60
+#         - name: "tftest-macsec-param-test2"
+#           description: this is a thing 2
+#           key_expiry_time: disabled
+#       macsec_keychain_policies:
+#         - name: tftest-macsec-kc-test
+#           description: "test one"
+#           key_policies:
+#             - name: BleepBloop
+#               key_name: d03a9be293985b5e340004345edaffd2
+#               pre_shared_key: 0dd76c3349d65fcfe863737496a60bba
+#               description: test
+#               start_time: now
+#               end_time: infinite
+#         - name: tftest-macsec-kc-test2
+#           description: "test two"
+#           key_policies:
+#             - name: Test2
+#               key_name: 9898765431deadbeef
+#               pre_shared_key: abcd1234abcd1234abcd1234abcd1234abcd1234abcd1234abcd1234abcd1234
+#               description: test
+#               start_time: now
+#               end_time: infinite
+#             - name: Test2.2
+#               key_name: deadbeef9898765431
+#               pre_shared_key: abcd1234abcd1234abcd1234abcd1234abcd1234abcd1234abcd1234abcd1234
+#               # description: test
+#               # startTime: now
+#               # endTime: infinite
+#       #   # - name: tftest-macsec-kc-test1
