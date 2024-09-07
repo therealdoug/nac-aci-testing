@@ -7,6 +7,18 @@ apic:
       bridge_domains:
         - name: default
           vrf: default
+      contracts:
+        - name: LabelContract
+          subjects:
+            - name: LabelSubj
+              provided_label_match: AtmostOne
+              consumed_label_match: All
+              consumed_labels:
+                - name: Subj_cons01
+                  tag: black
+              provided_labels:
+                - name: Subj_prov01
+                  tag: lawn-green
       application_profiles:
         - name: LabelTesting
           endpoint_groups:
@@ -45,12 +57,12 @@ apic:
                   tag: yellow
                 - name: provided_subject_label02
                   tag: bisque
-              consumed_epg_labels:
+              consumed_useg_epg_labels:
                 - name: consumed_epg_label01
                   tag: black
                 - name: consumed_epg_label02
                   tag: aqua
-              provided_epg_labels:
+              provided_useg_epg_labels:
                 - name: provided_epg_label01
                   tag: yellow
                 - name: provided_epg_label02
